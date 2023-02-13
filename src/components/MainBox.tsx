@@ -7,7 +7,6 @@ type Props = {};
 
 const MainBox = (props: Props) => {
   const [totalBalance, setTotalBalance] = useState(0);
-  console.log(transactionData);
 
   useEffect(() => {
     let currentBalance: any = 0;

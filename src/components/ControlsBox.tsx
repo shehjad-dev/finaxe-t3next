@@ -1,8 +1,16 @@
 import React from "react";
+import { useSession, useSupabaseClient } from "@supabase/auth-helpers-react";
+import { sign } from "crypto";
 
 type Props = {};
 
 const ControlsBox = (props: Props) => {
+  const session = useSession();
+  const supabase = useSupabaseClient();
+
+  async function signout() {
+    const { error } = await supabase.auth.signOut();
+  }
   return (
     <div className="flex h-full flex-col justify-between rounded-md bg-white py-5 px-3 text-black">
       <div className="flex flex-col gap-4">
@@ -40,7 +48,10 @@ const ControlsBox = (props: Props) => {
         </button>
       </div>
       <div>
-        <button className="rounded-full bg-secondary3 p-2 text-secondary1">
+        <button
+          className="rounded-full bg-secondary3 p-2 text-secondary1"
+          onClick={signout}
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"

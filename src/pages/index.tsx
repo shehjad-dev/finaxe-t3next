@@ -4,8 +4,25 @@ import Link from "next/link";
 import ControlsBox from "../components/ControlsBox";
 import MainBox from "../components/MainBox";
 import UserBox from "../components/UserBox";
+import { useSession, useSupabaseClient } from "@supabase/auth-helpers-react";
 
 const Home: NextPage = () => {
+  const session = useSession();
+  const supabase = useSupabaseClient();
+
+  /* if (!session) {
+    console.log("no session");
+  } */
+
+  const loginWithGoogle = async () => {
+    async function signInWithGoogle() {
+      const { data, error } = await supabase.auth.signInWithOAuth({
+        provider: "google",
+      });
+    }
+
+    signInWithGoogle();
+  };
   return (
     <>
       <Head>
@@ -14,12 +31,22 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className="flex min-h-screen flex-row  items-center justify-center gap-6 bg-gradient-to-tr   from-primary2 to-primary1">
+        {!session ? (
+          <button
+            className="rounded-lg bg-white p-2 hover:bg-secondary3"
+            onClick={loginWithGoogle}
+          >
+            Login With Gmail
+          </button>
+        ) : (
+          <div className="flex h-[450px] w-[70vw] flex-row items-center justify-center gap-6">
+            <UserBox />
+            <MainBox />
+            <ControlsBox />
+          </div>
+        )}
+
         {/* <main className="flex min-h-screen flex-row items-center justify-center gap-6 bg-gradient-to-b from-[#2e026d] to-[#15162c]"> */}
-        <div className="flex h-[450px] w-[70vw] flex-row items-center justify-center gap-6">
-          <UserBox />
-          <MainBox />
-          <ControlsBox />
-        </div>
 
         {/* <div className="container flex flex-col items-center justify-center gap-12 px-4 py-16 ">
           <h1 className="text-5xl font-extrabold tracking-tight text-white sm:text-[5rem]">
