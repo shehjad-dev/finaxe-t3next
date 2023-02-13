@@ -4,17 +4,13 @@ import transactionData from "../data/transactionData";
 type Props = {};
 
 const TransactionTable = (props: Props) => {
-  console.log(transactionData);
   return (
-    <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
-      <table className="w-full text-left text-sm text-secondary1 dark:text-gray-400">
+    <div className="relative max-h-[300px] overflow-x-auto overflow-y-auto ">
+      <table className="mt-6 w-full text-left text-sm text-secondary1 dark:text-gray-400">
         <tbody>
           {transactionData.map((item, index) => (
-            <tr
-              className="border-b bg-white dark:border-gray-700 dark:bg-gray-800"
-              key={index}
-            >
-              <td className="px-6 py-4 text-right">
+            <tr className="bg-transparent" key={index}>
+              <td className="px-6 py-4 pl-0 text-right">
                 <span
                   className={`${
                     item.type === "Income"
@@ -61,10 +57,10 @@ const TransactionTable = (props: Props) => {
               >
                 <span>{item.purpose}</span>
               </td>
-              <td className="px-6 py-4">${item.amount}</td>
+              <td className="px-6 py-4">${item.amount.toString()}</td>
               <td className="px-6 py-4">{item.date}</td>
               <td className="px-6 py-4 text-right">
-                <button className="text-secondary1">
+                <button className="rounded-sm p-1 text-secondary1 transition-all duration-75 ease-in hover:bg-red-100 hover:text-red-500">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"

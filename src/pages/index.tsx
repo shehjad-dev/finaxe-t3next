@@ -15,7 +15,7 @@ const Home: NextPage = () => {
       </Head>
       <main className="flex min-h-screen flex-row  items-center justify-center gap-6 bg-gradient-to-tr   from-primary2 to-primary1">
         {/* <main className="flex min-h-screen flex-row items-center justify-center gap-6 bg-gradient-to-b from-[#2e026d] to-[#15162c]"> */}
-        <div className="flex h-[450px] w-[70vw] flex-row items-center justify-center gap-6 bg-red-500">
+        <div className="flex h-[450px] w-[70vw] flex-row items-center justify-center gap-6">
           <UserBox />
           <MainBox />
           <ControlsBox />
